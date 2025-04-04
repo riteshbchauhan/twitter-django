@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Twitter | Homepage
+{% endblock %}
+
+{% block content %}
+<h1 class="text-center">Welcome to Twitter Django Project</h1>
+<hr>
+<div class="center-container">
+    <h4>
+        {% if form.instance.pk %}
+        Edit Tweet
+        {% else %}
+        Create Tweet
+        {% endif %}
+    </h4>
+
+    <form method="post" enctype="multipart/form-data" class="form">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button class="btn btn-warning mt-3" type="submit">Submit</button>
+    </form>
+    <a href="{% url 'tweet_list' %}" class="mt-1">Back</a>
+</div>
+
+<style>
+    /* Center the content */
+    .center-container {
+        display: flex;
+        flex-direction: column; /* Stack items vertically */
+        align-items: center;    /* Horizontally center the items */
+        justify-content: center; /* Vertically center the items (optional) */
+        text-align: center;      /* Make text in h4 centered */
+        padding: 10px;           /* Optional padding around the content */
+    }
+
+    h4 {
+        margin-bottom: px; /* Space between the title and form */
+    }
+
+    .form {
+        width: 100%;           /* Ensure the form takes full width of its container */
+        max-width: 600px;      /* Limit form width to 600px (adjust as needed) */
+        margin: 0 auto;        /* Center form horizontally */
+    }
+</style>
+
+
+{% endblock %}
